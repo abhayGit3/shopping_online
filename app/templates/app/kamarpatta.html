@@ -1,0 +1,45 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Kamarpatta for Women{% endblock title %}
+{% block main-content %}
+<body>
+<div class="container my-5  ">
+ <div class="row">
+  <div class="col-sm-3">
+    <div class="list-group">
+        <a href="#" class="list-group-item
+         list-group-item-action" aria-current="true" ><h3 class="fw-bold">Apply Filters from Below:</h3></a>
+        <a href="{% url 'kamarpatta' %}" class="list-group-item
+         list-group-item-action" aria-current="true">All</a>
+         <a href="{% url 'kamarpattadata' 'Manyawar' %}" class="list-group-item
+         list-group-item-action" aria-current="true">kamarpatta By Manyawar</a>
+         <a href="{% url 'kamarpattadata' 'Nykaa_Fashion' %}" class="list-group-item
+         list-group-item-action" aria-current="true">kamarpatta By Nykaa_Fashion</a>
+         <a href="{% url 'kamarpattadata' 'below' %}" class="list-group-item
+         list-group-item-action" aria-current="true">kamarpatta below 500</a>
+         <a href="{% url 'kamarpattadata' 'above' %}" class="list-group-item
+         list-group-item-action" aria-current="true">kamarpatta above 500</a>
+    </div>
+  </div>
+  <div class="col-sm-8">
+      <div class="row">
+          {% for product in kamarpatta %}
+           <div class="col-sm-4 text-center mb-10">
+               <a href="{% url 'product-detail' product.id %}" class="btn">
+                   <div class="item">
+                       <img src="{{product.product_image.url}}" alt="" height="300" width="150" class="">
+                       <div class="fw-bold">{{product.description}}</div>
+                       <div class="fw-bold">RS.{{product.discounted_price}}</div>
+                       <small class="fw-light text-decoration-line-through">{{product.selling_price}}</small>
+                   </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+
+    
+  </div>
+ </div>
+</div>
+</body>
+{% endblock main-content %}

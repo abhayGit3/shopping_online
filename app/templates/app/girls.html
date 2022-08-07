@@ -1,0 +1,49 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Girls Wears{% endblock title %}
+{% block main-content %}
+<body>
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+    <div class="list-group">
+        <a href="#" class="list-group-item
+         list-group-item-action" aria-current="true" ><h3 class="fw-bold">Apply Filters from Below:</h3></a>
+        <a href="{% url 'girls' %}" class="list-group-item
+         list-group-item-action" aria-current="true">All</a>
+         <a href="{% url 'girlsdata' 'Manyawar' %}" class="list-group-item
+         list-group-item-action" aria-current="true">Girls Wears By Manyawar</a>
+         <a href="{% url 'girlsdata' 'Nykaa_Fashion' %}" class="list-group-item
+         list-group-item-action" aria-current="true">Girls Wears By Nykaa Fashion</a>
+         <a href="{% url 'girlsdata' 'FabIndia' %}" class="list-group-item
+         list-group-item-action" aria-current="true">Girls Wears By Fabindia</a>
+         <a href="{% url 'girlsdata' 'Biba' %}" class="list-group-item
+         list-group-item-action" aria-current="true">Girls Wears By Biba</a>
+         <a href="{% url 'girlsdata' 'below' %}" class="list-group-item
+         list-group-item-action" aria-current="true">Girls Wears below 500</a>
+         <a href="{% url 'girlsdata' 'above' %}" class="list-group-item
+         list-group-item-action" aria-current="true">Girls Wears above 500</a>
+    </div>
+  </div>
+  <div class="col-sm-8">
+      <div class="row">
+          {% for product in girls %}
+           <div class="col-sm-4 text-center mb-4">
+               <a href="{% url 'product-detail' product.id %}" class="btn">
+                   <div class="item">
+                       <img src="{{product.product_image.url}}" alt="" height="300" class="">
+                       <div class="fw-bold">{{product.description}}</div>
+                       <div class="fw-bold">RS.{{product.discounted_price}}</div>
+                       <small class="fw-light text-decoration-line-through">{{product.selling_price}}</small>
+                   </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+
+    
+  </div>
+ </div>
+</div>
+</body>
+{% endblock main-content %}

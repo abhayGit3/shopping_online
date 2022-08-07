@@ -1,0 +1,47 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+    <div class="list-group">
+        <a href="#" class="list-group-item
+         list-group-item-action" aria-current="true" ><h3 class="fw-bold">Apply Filters from Below:</h3></a>
+        <a href="{% url 'suit' %}" class="list-group-item
+         list-group-item-action" aria-current="true">All</a>
+         <a href="{% url 'suitdata' 'Manyawar' %}" class="list-group-item
+         list-group-item-action" aria-current="true">sherwani For Men By Manyawar</a>
+         <a href="{% url 'suitdata' 'Fabindia' %}" class="list-group-item
+         list-group-item-action" aria-current="true">sherwani For Men By Fabindia</a>
+         <a href="{% url 'suitdata' 'Peter_England' %}" class="list-group-item
+         list-group-item-action" aria-current="true">sherwani For Men By Peter England</a>
+         <a href="{% url 'suitdata' 'Nykaa_Fashion' %}" class="list-group-item
+         list-group-item-action" aria-current="true">sherwani For Men By Nykaa Fashion</a>
+         <a href="{% url 'suitdata' 'below' %}" class="list-group-item
+         list-group-item-action" aria-current="true">sherwani For Men below 1000</a>
+         <a href="{% url 'suitdata' 'above' %}" class="list-group-item
+         list-group-item-action" aria-current="true">sherwani For Men above 1000</a>
+    </div>
+  </div>
+  <div class="col-sm-8">
+      <div class="row">
+          {% for product in suit %}
+           <div class="col-sm-4 text-center mb-4">
+               <a href="{% url 'product-detail' product.id %}" class="btn">
+                   <div class="item">
+                       <img src="{{product.product_image.url}}" alt="" height="300" class="">
+                       <div class="fw-bold">{{product.description}}</div>
+                       <div class="fw-bold">RS.{{product.discounted_price}}</div>
+                       <small class="fw-light text-decoration-line-through">{{product.selling_price}}</small>
+                   </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+
+    
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
